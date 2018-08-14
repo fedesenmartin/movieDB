@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">TV Show Reminder</string>
+    <string name="subscribe_off">SUSCRIBIRME</string>
+    <string name="subscribe_on">SUSCRIPTO</string>
+    <string name="add">AGREGAR</string>
+    <string name="added">AGREGADO</string>
+
+
+    <string name="str_cancel">Cancelar</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_comm_base_url">https://api.themoviedb.org/3/</string>
+
+    <string name="str_overview">OVERVIEW</string>
+
+    <string name="http_protocol">https</string>
+    <string name="base_url">api.themoviedb.org</string>
+    <string name="str_recommended">RECOMENDADAS</string>
+    <string name="str_suscription">SERIES QUE SIGO</string>
+
+
+    <string name="base_image">https://image.tmdb.org/t/p/w500/</string>
+    <string name="api_key">aa46f173e962dd2f43e9d2898fa98bcd</string>
+
+    <string name="api_name">api_key</string>
+
+
+
+</resources>

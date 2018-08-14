@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#1b1b1b"
+    android:layout_height="match_parent"
+    tools:context=".UI.home.MainActivity">
+
+
+    <android.support.v7.widget.Toolbar
+
+        android:translationZ="10dp"
+        android:elevation="4dp"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        >
+        
+        
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:id="@+id/searchLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                
+                
+                <EditText
+                    android:imeOptions="actionSearch"
+                    android:textColorHint="#99ffffff"
+                    android:hint="Buscar"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#ffffff"
+                    android:id="@+id/searchEditText"
+                    android:drawableLeft="@drawable/ic_search"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/search_background"
+                    android:layout_weight="0.8"
+                    android:layout_width="0dp"
+                    android:layout_height="28dp"/>
+
+
+                <TextView
+                    android:id="@+id/cancelSearchButton"
+                    android:paddingBottom="6dp"
+                    android:gravity="bottom"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:layout_weight="0.2"
+                    android:textColor="#ffffff"
+                    android:text="@string/str_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+                
+            </LinearLayout>
+
+            <RelativeLayout
+                android:visibility="visible"
+                android:id="@+id/normalLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/serchButton"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_search_big"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"/>
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:text="@string/app_name"
+                    android:id="@+id/toolbar_title"
+                    android:textSize="17sp"
+                    android:textColor="#ffffff"
+                    android:letterSpacing="-0.02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:layout_gravity="center" />
+                
+                
+            </RelativeLayout>
+  
+            
+        </RelativeLayout>
+
+
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroller"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_below="@id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/sus_Layout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:text="@string/str_suscription"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:paddingLeft="21dp"
+                    android:paddingRight="21dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:id="@+id/suscriptionList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:visibility="gone"
+                android:id="@+id/recommendedLayout"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:text="@string/str_recommended"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:paddingBottom="10dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:id="@+id/movieList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v7.widget.RecyclerView
+        android:background="#1b1b1b"
+        android:visibility="gone"
+        android:id="@+id/searchList"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ProgressBar
+
+        android:id="@+id/progresBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"/>
+
+
+</RelativeLayout>
