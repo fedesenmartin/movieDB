@@ -21,9 +21,7 @@ import com.fedesen.prueba.UI.home.MainActivityContract
 
 
 class SearchAdapter(
-        private val context: Context,
         private val view : MainActivityContract.MainActivityViewInterface,
-        private val sharedPreferences: SharedPreferences,
         val mDataSet: ArrayList<Movie>,
         private val mLayout: Int
 
@@ -42,37 +40,6 @@ class SearchAdapter(
         holder.name.text = movie.originalTitle
         holder.genre.text = movie.genre!!.name
         onCoverClicked(holder, movie)
-
-        if(SharedPrefercesHelper.isAvailable(movie.id?.toInt(),sharedPreferences)){
-            setHolderOn(holder)
-            holder.followButton.setOnClickListener {
-                SharedPrefercesHelper.removeMovie(sharedPreferences,movie)
-                notifyDataSetChanged()
-
-            }
-        }else{
-            setHolderOff(holder)
-            holder.followButton.setOnClickListener {
-                SharedPrefercesHelper.saveMovie(sharedPreferences,movie)
-                notifyDataSetChanged()
-
-            }
-
-        }
-    }
-
-
-    private fun setHolderOn(holder: MovieHolder){
-        holder.followButton.background = context.resources.getDrawable(R.drawable.movie_cell_added_on)
-        holder.followButton.text = context.getText(R.string.added)
-        holder.followButton.setTextColor(Color.parseColor("#ffffff"))
-
-    }
-
-    private fun setHolderOff(holder: MovieHolder){
-        holder.followButton.background = context.resources.getDrawable(R.drawable.movie_cell_added)
-        holder.followButton.text = context.getText(R.string.add)
-        holder.followButton.setTextColor(Color.DKGRAY)
 
     }
 

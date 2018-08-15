@@ -24,7 +24,9 @@
     <string name="api_key">aa46f173e962dd2f43e9d2898fa98bcd</string>
 
     <string name="api_name">api_key</string>
-
+    <string name="str_popular">Popular</string>
+    <string name="str_upcoming">Upcoming</string>
+    <string name="str_top_rated">Top Rated</string>
 
 
 </resources>

@@ -2,7 +2,6 @@ package com.fedesen.prueba.UI.home
 
 
 import android.content.SharedPreferences
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import com.fedesen.prueba.SharedPrefercesHelper
@@ -20,33 +19,8 @@ class MainActivityPreseter(private val view : MainActivityContract.MainActivityV
                            private val sharedPreferences:SharedPreferences
 ) : MainActivityContract.MainActivityPresenter {
 
-
     val  movieService: MovieService = RetrofitManager().getInstance().create(MovieService::class.java)
 
-    override fun getMovies(page_number:Int) {
-
-            view.setLoaderVisiblity(View.VISIBLE)
-            movieService.getMovies(page_number).enqueue(object : Callback<ListMoviesResponseWrapper> {
-                override fun onResponse(call: Call<ListMoviesResponseWrapper>?, response: retrofit2.Response<ListMoviesResponseWrapper>?) {
-                    view.setLoaderVisiblity(View.INVISIBLE)
-                    // here I parse data obtained from server,and set the genre
-                    // for the purpose of ejercice I only set only one genre for movie
-                        for(movie in response!!.body()!!.results){
-                            parseMovieGenre(movie)
-                        }
-                        view.onMoviesObtained(response!!.body()!!.results, response!!.body()!!.page?.toInt()!!)
-
-                }
-
-                override fun onFailure(call: Call<ListMoviesResponseWrapper>?, t: Throwable?) {
-                    view.setLoaderVisiblity(View.INVISIBLE)
-                    t?.printStackTrace()
-                    view.onError(t!!.localizedMessage)
-                }
-            })
-
-
-    }
 
     override fun searchMovie(query: String) {
         view.setLoaderVisiblity(View.VISIBLE)
@@ -94,7 +68,6 @@ class MainActivityPreseter(private val view : MainActivityContract.MainActivityV
         })
     }
 
-    //only one genre for each movie//
     private fun parseMovieGenre(movie: Movie) {
         var genresList = SharedPrefercesHelper.getGenre(sharedPreferences)
             Log.d("PELICULA", movie.originalTitle)
@@ -129,12 +102,75 @@ class MainActivityPreseter(private val view : MainActivityContract.MainActivityV
         view.shownormalLayout()
     }
 
-    override fun getSuscribedMovies() {
-        val movies:ArrayList<Movie>?=SharedPrefercesHelper.getMovies()
 
-        if(movies!=null){
-            view.onSubscribedMoviesObtained(movies)
-        }
+    override fun getUpcomingMovies() {
+
+        view.setLoaderVisiblity(View.VISIBLE)
+        movieService.getUpcoming().enqueue(object : Callback<ListMoviesResponseWrapper> {
+            override fun onResponse(call: Call<ListMoviesResponseWrapper>?, response: retrofit2.Response<ListMoviesResponseWrapper>?) {
+                view.setLoaderVisiblity(View.INVISIBLE)
+                // here I parse data obtained from server,and set the genre
+                // for the purpose of ejercice I only set only one genre for movie
+
+                for(movie in response!!.body()!!.results){
+                    parseMovieGenre(movie)
+                }
+                view.onMoviesObtained(response!!.body()!!.results, response!!.body()!!.page?.toInt()!!)
+
+            }
+
+            override fun onFailure(call: Call<ListMoviesResponseWrapper>?, t: Throwable?) {
+                view.setLoaderVisiblity(View.INVISIBLE)
+                t?.printStackTrace()
+                view.onError(t!!.localizedMessage)
+            }
+        })
+
+
+    }
+
+    override fun getPopularMovies() {
+        view.setLoaderVisiblity(View.VISIBLE)
+        movieService.getPopular().enqueue(object : Callback<ListMoviesResponseWrapper> {
+            override fun onResponse(call: Call<ListMoviesResponseWrapper>?, response: retrofit2.Response<ListMoviesResponseWrapper>?) {
+                view.setLoaderVisiblity(View.INVISIBLE)
+                // here I parse data obtained from server,and set the genre
+                // for the purpose of ejercice I only set only one genre for movie
+                for(movie in response!!.body()!!.results){
+                    parseMovieGenre(movie)
+                }
+                view.onMoviesObtained(response!!.body()!!.results, response!!.body()!!.page?.toInt()!!)
+
+            }
+
+            override fun onFailure(call: Call<ListMoviesResponseWrapper>?, t: Throwable?) {
+                view.setLoaderVisiblity(View.INVISIBLE)
+                t?.printStackTrace()
+                view.onError(t!!.localizedMessage)
+            }
+        })
+    }
+
+    override fun getTopRatedMovies() {
+        view.setLoaderVisiblity(View.VISIBLE)
+        movieService.getTopRated().enqueue(object : Callback<ListMoviesResponseWrapper> {
+            override fun onResponse(call: Call<ListMoviesResponseWrapper>?, response: retrofit2.Response<ListMoviesResponseWrapper>?) {
+                view.setLoaderVisiblity(View.INVISIBLE)
+                // here I parse data obtained from server,and set the genre
+                // for the purpose of ejercice I only set only one genre for movie
+                for(movie in response!!.body()!!.results){
+                    parseMovieGenre(movie)
+                }
+                view.onMoviesObtained(response!!.body()!!.results, response!!.body()!!.page?.toInt()!!)
+
+            }
+
+            override fun onFailure(call: Call<ListMoviesResponseWrapper>?, t: Throwable?) {
+                view.setLoaderVisiblity(View.INVISIBLE)
+                t?.printStackTrace()
+                view.onError(t!!.localizedMessage)
+            }
+        })
     }
 
 

@@ -9,8 +9,6 @@ class App : Application() {
 
         private var mApp: App? = null
 
-        val application: Application? get() = mApp
-
         fun getContext(): Context {
             if (mApp == null) {
                 return Application()
@@ -18,6 +16,8 @@ class App : Application() {
 
             return mApp!!.applicationContext
         }
+
+
     }
 
     override fun onCreate() {

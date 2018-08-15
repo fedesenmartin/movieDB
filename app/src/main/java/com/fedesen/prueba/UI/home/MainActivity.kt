@@ -1,14 +1,13 @@
 package com.fedesen.prueba.UI.home
 
 import android.annotation.SuppressLint
+import android.app.ActivityOptions
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v4.widget.NestedScrollView
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -20,29 +19,20 @@ import com.fedesen.prueba.App
 import com.fedesen.prueba.R
 import com.fedesen.prueba.UI.detail.DetailsActivity
 import com.fedesen.prueba.adapter.AdapterMovie
-import com.fedesen.prueba.adapter.AdapterMovieSuscription
 import com.fedesen.prueba.adapter.SearchAdapter
 import com.fedesen.prueba.model.Movie
 import kotlinx.android.synthetic.main.activity_main.*
-import android.app.ActivityOptions
-
-
 
 
 class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewInterface {
 
 
-    private  var sharedPreferences:SharedPreferences =  PreferenceManager.getDefaultSharedPreferences(App.getContext())
+    private var sharedPreferences:SharedPreferences =  PreferenceManager.getDefaultSharedPreferences(App.getContext())
     private val preseter: MainActivityPreseter = MainActivityPreseter(this, sharedPreferences = sharedPreferences)
     private var adapter : AdapterMovie? = null
     private var searchAdapter : SearchAdapter? = null
-    private var adapterMovieSuscription : AdapterMovieSuscription? = null
     private val layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager
-    private val searchLayoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager
-    private val horizontal_manager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false) as RecyclerView.LayoutManager
-    private var current_page = 1
-    val DETAILS_BACK_CODE = 666
-
+    private val searchManager = LinearLayoutManager(this) as RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,46 +41,26 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
         initLists()
         initViews()
         preseter.getGenres()
-
     }
 
     override fun onGenresOtained() {
-        preseter.getMovies(current_page)
-        preseter.getSuscribedMovies()
+        preseter.getPopularMovies()
     }
 
     override fun onSearhObtainedMovies(movies: ArrayList<Movie>) {
         super.onSearhObtainedMovies(movies)
-        searchAdapter = SearchAdapter(this,this, sharedPreferences, movies, R.layout.movie_cell_search)
+        searchAdapter = SearchAdapter(this, movies, R.layout.movie_cell_search)
         searchList.adapter = searchAdapter
         searchList.visibility= View.VISIBLE
 
     }
 
-    override fun onSubscribedMoviesObtained(movie: ArrayList<Movie>) {
-        super.onSubscribedMoviesObtained(movie)
-        adapterMovieSuscription = AdapterMovieSuscription(this, this, movie, R.layout.movie_cell_suscription)
-        suscriptionList.adapter = adapterMovieSuscription
-        sus_Layout.visibility = View.VISIBLE
-        if(movie.size==0)sus_Layout.visibility = View.GONE
-
-    }
-
     override fun onMoviesObtained(movie: ArrayList<Movie> ,page_number:Int) {
         super.onMoviesObtained(movie,page_number)
-        if(adapter==null) adapter = AdapterMovie(this, this, movie, R.layout.movie_cell)
+        adapter = AdapterMovie(this, this, movie, R.layout.movie_cell)
         movieList.adapter = adapter
-
-        //pagintion//
-        if(current_page!=1){
-            adapter!!.mDataSet.addAll(movie)
-            adapter!!.notifyDataSetChanged()
-        }
-        current_page ++
-        recommendedLayout.visibility = View.VISIBLE
-
-        preseter.getSuscribedMovies()
-
+        movieList.requestFocus()
+        movieList.visibility = View.VISIBLE
 
     }
 
@@ -111,38 +81,14 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
                 R.anim.push_left_out)
         val intent = Intent(this@MainActivity, DetailsActivity::class.java)
         intent.putExtra("movie", movie)
-        startActivityForResult(intent,DETAILS_BACK_CODE,options.toBundle())
+        startActivity(intent,options.toBundle())
 
 
      }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == DETAILS_BACK_CODE){
-            preseter.getSuscribedMovies()
-            if(searchList.visibility == View.VISIBLE){
-                preseter.searchMovie(searchEditText.text.toString())
-            }
-        }
-    }
-
     private fun initLists() {
-
-        //main list//
         movieList.layoutManager = layoutManager
-        movieList.itemAnimator = DefaultItemAnimator()
-        scroller.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-
-            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
-                preseter.getMovies(current_page)
-            }
-        })
-
-        //suscriptionList
-        suscriptionList.layoutManager = horizontal_manager
-        searchList.layoutManager = searchLayoutManager
-
+        searchList.layoutManager = searchManager
     }
 
     override fun showSearchLayout() {
@@ -177,7 +123,6 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
 
         }else{
             preseter.onCancelSearchClicked()
-            preseter.getSuscribedMovies()
         }
     }
 
@@ -188,7 +133,6 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
 
         cancelSearchButton.setOnClickListener {
             preseter.onCancelSearchClicked()
-            preseter.getSuscribedMovies()
         }
 
         searchEditText.addTextChangedListener(object : TextWatcher {
@@ -205,11 +149,25 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
             }
         })
 
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+
+            when (item.itemId) {
+                R.id.action_top_rated -> {
+                    preseter.getTopRatedMovies()
+                }
+                R.id.action_upcoming -> {
+                    preseter.getUpcomingMovies()
+
+                }
+                R.id.action_popular -> {
+                    preseter.getPopularMovies()
+
+                }
+            }
+            return@setOnNavigationItemSelectedListener true
+        }
+
 
     }
-
-
-
-
 
 }

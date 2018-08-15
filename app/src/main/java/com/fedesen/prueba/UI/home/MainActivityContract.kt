@@ -10,8 +10,7 @@ class MainActivityContract {
 
 
      interface MainActivityViewInterface{
-        fun onMoviesObtained(movie: ArrayList<Movie>,page_number : Int){}
-         fun onSubscribedMoviesObtained(movie: ArrayList<Movie>) {}
+         fun onMoviesObtained(movie: ArrayList<Movie>,page_number : Int){}
          fun setLoaderVisiblity(visibility:Int) {}
          fun onError(s: String)
          fun navigateDetails(movie:Movie){}
@@ -23,8 +22,9 @@ class MainActivityContract {
      }
 
     interface MainActivityPresenter{
-        fun getMovies(page_number: Int)
-        fun getSuscribedMovies()
+        fun getUpcomingMovies()
+        fun getTopRatedMovies()
+        fun getPopularMovies()
         fun getGenres()
         fun searchMovie(query:String)
         fun onSearchClicked()
