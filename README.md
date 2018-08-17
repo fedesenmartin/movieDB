@@ -32,5 +32,9 @@ En esta capa declaro todos los objetos como tales.
 ###### En mi opinion un buen codigo ,debe estar organizado bajo alguna arquitectura.Ya sea mvp,mvvm,flux.Tambien creo debe ser un codigo leegible (puede tambien ser comentado),modularizado.Debe tener variables con nombres representativos y seguir algun tipo de tipo de escritura.Debe poder ser testeable facilmente y para esto tomar buenas practicas como separar el framework de android (fragments,actvididade,views,layouts...)y mantenerlo dentro de su actividad o fragment y no andar modificandolos en otras clases.
 
 
+######  App :Esta clase se encarga de inilizalizar librerias o dependencias de la applicacion ademas de proveer un contexto .
+
+
+
 
 
