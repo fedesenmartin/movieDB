@@ -1,32 +1,27 @@
-package com.fedesen.prueba.adapter
+package com.fedesen.prueba.UI.home.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.fedesen.prueba.App
 import com.fedesen.prueba.R
 import com.fedesen.prueba.model.Movie
 import com.squareup.picasso.Picasso
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.ColorMatrix
-import android.support.v7.app.AppCompatActivity
+import android.widget.Button
+import android.widget.TextView
 import com.fedesen.prueba.UI.home.MainActivityContract
 
 
-class AdapterMovie(
+class SearchAdapter(
         private val view : MainActivityContract.MainActivityViewInterface,
-        private val activity: AppCompatActivity,
         val mDataSet: ArrayList<Movie>,
         private val mLayout: Int
 
-) : RecyclerView.Adapter<AdapterMovie.MovieHolder>() {
+) : RecyclerView.Adapter<SearchAdapter.MovieHolder>() {
 
-    private val matrix: ColorMatrix = ColorMatrix()
 
-    val filter = ColorMatrixColorFilter(matrix)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(mLayout, parent, false)
@@ -36,53 +31,64 @@ class AdapterMovie(
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         val movie = mDataSet[position]
         setCover(holder, movie)
-        setTitle(holder, movie)
+        holder.name.text = movie.originalTitle
+        holder.genre.text = movie.genre!!.name
         onCoverClicked(holder, movie)
 
     }
+
+
+
 
     override fun getItemCount(): Int {
         return mDataSet.size
     }
 
-    private fun setTitle(holder: MovieHolder, movie: Movie) {
-        holder.name.text = movie.originalTitle
-    }
+
 
     private fun setCover(holder: MovieHolder, movie: Movie) {
-        matrix.setSaturation(0f)
 
         Picasso.with(App.getContext())
                 .load(movie.coverUrl)
                 .fit()
                 .centerCrop()
                 .into(holder.cover)
-        val matrix = ColorMatrix()
-        matrix.setSaturation(0f)
 
-        val filter = ColorMatrixColorFilter(matrix)
-        holder.cover.setColorFilter(filter)
-        holder.genre.text = movie.genre!!.name
 
     }
 
+
     private fun onCoverClicked(holder: MovieHolder, movie: Movie) {
-        holder.cover.setOnClickListener {
+        holder.itemView.setOnClickListener {
+
             view.navigateDetails(movie)
 
         }
     }
 
+    fun updateMovies() {
+        notifyDataSetChanged()
+    }
+
 
     class MovieHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val cover: ImageView
-        val name: TextView
-        val genre :TextView
+        var cover: ImageView
+        var name: TextView
+        var genre: TextView
+        var followButton: Button
+
+
+
+
 
         init {
-            cover = v.findViewById(R.id.movieImage) as ImageView
-            name = v.findViewById(R.id.movieName) as TextView
-            genre = v.findViewById(R.id.genreText) as TextView
+            cover = v.findViewById(R.id.movieImageSearch) as ImageView
+            name = v.findViewById(R.id.moviehNameSearc) as TextView
+            genre = v.findViewById(R.id.movieGenreSearch) as TextView
+            followButton = v.findViewById(R.id.follow_button) as Button
+
+
+
         }
     }
 

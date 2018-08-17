@@ -4,11 +4,11 @@ package com.fedesen.prueba.UI.home
 import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
-import com.fedesen.prueba.SharedPrefercesHelper
-import com.fedesen.prueba.api.ListMoviesResponseWrapper
-import com.fedesen.prueba.api.MovieService
-import com.fedesen.prueba.api.RetrofitManager
-import com.fedesen.prueba.api.SearchMoviesResponseWrapper
+import com.fedesen.prueba.data.SharedPrefercesHelper
+import com.fedesen.prueba.data.api.ListMoviesResponseWrapper
+import com.fedesen.prueba.data.api.MovieService
+import com.fedesen.prueba.data.api.RetrofitManager
+import com.fedesen.prueba.data.api.SearchMoviesResponseWrapper
 import com.fedesen.prueba.model.Genre
 import com.fedesen.prueba.model.GenreResponse
 import com.fedesen.prueba.model.Movie

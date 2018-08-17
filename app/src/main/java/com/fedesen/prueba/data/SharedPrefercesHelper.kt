@@ -1,7 +1,8 @@
-package com.fedesen.prueba
+package com.fedesen.prueba.data
 
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.fedesen.prueba.App
 import com.fedesen.prueba.model.Genre
 import com.fedesen.prueba.model.Movie
 import com.google.gson.Gson

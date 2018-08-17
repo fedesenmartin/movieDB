@@ -4,11 +4,10 @@ package com.fedesen.prueba.UI.detail
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.support.v7.graphics.Palette
-import android.util.Log
 import android.widget.Toast
 import com.fedesen.prueba.App
 import com.fedesen.prueba.Constants
-import com.fedesen.prueba.SharedPrefercesHelper
+import com.fedesen.prueba.data.SharedPrefercesHelper
 import com.fedesen.prueba.model.Movie
 import java.util.*
 

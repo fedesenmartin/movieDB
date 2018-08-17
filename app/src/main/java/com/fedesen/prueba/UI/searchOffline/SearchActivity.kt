@@ -12,13 +12,10 @@ import android.transition.Slide
 import android.view.View
 import com.fedesen.prueba.R
 import com.fedesen.prueba.UI.detail.DetailsActivity
-import com.fedesen.prueba.adapter.AdapterMovie
 import com.fedesen.prueba.model.Genre
-import com.fedesen.prueba.adapter.SearchAdapter
-import com.fedesen.prueba.adapter.SearchAdapterOffline
+import com.fedesen.prueba.UI.searchOffline.adapter.SearchAdapterOffline
 import com.fedesen.prueba.model.Movie
 import com.jaredrummler.materialspinner.MaterialSpinner
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 

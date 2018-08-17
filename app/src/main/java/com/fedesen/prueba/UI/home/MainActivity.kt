@@ -19,8 +19,8 @@ import com.fedesen.prueba.App
 import com.fedesen.prueba.R
 import com.fedesen.prueba.UI.detail.DetailsActivity
 import com.fedesen.prueba.UI.searchOffline.SearchActivity
-import com.fedesen.prueba.adapter.AdapterMovie
-import com.fedesen.prueba.adapter.SearchAdapter
+import com.fedesen.prueba.UI.home.adapter.AdapterMovie
+import com.fedesen.prueba.UI.home.adapter.SearchAdapter
 import com.fedesen.prueba.model.Genre
 import com.fedesen.prueba.model.Movie
 import kotlinx.android.synthetic.main.activity_main.*

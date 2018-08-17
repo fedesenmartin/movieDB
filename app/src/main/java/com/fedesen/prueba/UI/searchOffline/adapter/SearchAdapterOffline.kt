@@ -1,31 +1,25 @@
-package com.fedesen.prueba.adapter
+package com.fedesen.prueba.UI.searchOffline.adapter
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.fedesen.prueba.App
-import com.fedesen.prueba.R
 import com.fedesen.prueba.model.Movie
 import com.squareup.picasso.Picasso
-import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
-import com.fedesen.prueba.SharedPrefercesHelper
-import com.fedesen.prueba.UI.home.MainActivityContract
+import com.fedesen.prueba.App
+import com.fedesen.prueba.R
+import com.fedesen.prueba.UI.searchOffline.SearchActivityContract
 
 
-class SearchAdapter(
-        private val view : MainActivityContract.MainActivityViewInterface,
+class SearchAdapterOffline(
+        private val view : SearchActivityContract.SearchActivityViewInterface,
         val mDataSet: ArrayList<Movie>,
         private val mLayout: Int
 
-) : RecyclerView.Adapter<SearchAdapter.MovieHolder>() {
+) : RecyclerView.Adapter<SearchAdapterOffline.MovieHolder>() {
 
 
 
@@ -38,7 +32,6 @@ class SearchAdapter(
         val movie = mDataSet[position]
         setCover(holder, movie)
         holder.name.text = movie.originalTitle
-        holder.genre.text = movie.genre!!.name
         onCoverClicked(holder, movie)
 
     }

@@ -1,10 +1,9 @@
-package com.fedesen.prueba.api
+package com.fedesen.prueba.data.api
 
 
 import com.fedesen.prueba.model.GenreResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 

@@ -1,7 +1,5 @@
 package com.fedesen.prueba.UI.home
 
-import android.support.v7.app.AppCompatActivity
-import com.fedesen.prueba.adapter.AdapterMovie
 import com.fedesen.prueba.model.Genre
 import com.fedesen.prueba.model.Movie
 
