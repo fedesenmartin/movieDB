@@ -95,13 +95,14 @@
 
 
                 <Button
+
                     android:background="@null"
                     android:layout_marginRight="8dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:text="@string/str_by_genre"
                     android:id="@+id/toolbar_genres_search"
-                    android:textSize="17sp"
+                    android:textSize="12sp"
                     android:textColor="#ffffff"
                     android:letterSpacing="-0.02"
                     android:layout_width="wrap_content"

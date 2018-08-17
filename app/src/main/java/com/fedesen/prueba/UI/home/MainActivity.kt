@@ -169,6 +169,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
 
+            preseter.onCancelSearchClicked()
             when (item.itemId) {
                 R.id.action_top_rated -> {
                     preseter.getTopRatedMovies()
