@@ -107,19 +107,8 @@ class DetailsActivity : AppCompatActivity(),DetailsActivityContract.DetailsActiv
     override fun onMovieStatusObtained(CHANGE: Int) {
 
         suscribeButton.visibility =View.VISIBLE
-        // se suscribio
-        if(CHANGE==0){
-            suscribeButton.text = resources.getText(R.string.subscribe_on)
-            suscribeButton.background = resources.getDrawable(R.drawable.shape_subscribe_on)
-            suscribeButton.setTextColor(Color.BLACK)
-        }
-        if(CHANGE==1){
-            suscribeButton.text = resources.getText(R.string.subscribe_off)
-            suscribeButton.background = resources.getDrawable(R.drawable.shape_subscribe_off)
-            suscribeButton.setTextColor(Color.WHITE)
 
 
-        }
     }
 
 

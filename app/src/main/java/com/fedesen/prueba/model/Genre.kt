@@ -4,7 +4,7 @@ import java.io.Serializable
 
 
 data class GenreResponse(
-    @SerializedName("genres") val genres: List<Genre>
+    @SerializedName("genres") val genres: ArrayList<Genre>
 ):Serializable
 
 data class Genre(

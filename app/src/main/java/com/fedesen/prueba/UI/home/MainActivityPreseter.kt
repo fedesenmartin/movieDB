@@ -46,6 +46,19 @@ class MainActivityPreseter(private val view : MainActivityContract.MainActivityV
 
     }
 
+    override fun getLocalData() {
+        if(SharedPrefercesHelper.getGenre(sharedPreferences)!=null && SharedPrefercesHelper.getMovies()!=null){
+            view.navigateSearch(SharedPrefercesHelper.getGenre(sharedPreferences), SharedPrefercesHelper.getMovies())
+        }else{
+            view.onError("No hay data aun")
+        }
+    }
+
+    override fun saveMovies(movie: ArrayList<Movie>) {
+        for (m in movie){
+            SharedPrefercesHelper.saveMovie(sharedPreferences,m)
+        }
+    }
     override fun getGenres() {
         view.setLoaderVisiblity(View.VISIBLE)
         movieService.getGenre().enqueue(object : Callback<GenreResponse> {

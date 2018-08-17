@@ -13,20 +13,22 @@ class SharedPrefercesHelper{
 
     companion object {
 
-        fun saveGenre(prefsEditor:SharedPreferences.Editor,genre: List<Genre>) {
+        fun saveGenre(prefsEditor:SharedPreferences.Editor,genre: ArrayList<Genre>?) {
             val gson = Gson()
             val jsonText = gson.toJson(genre)
             prefsEditor.putString("genres", jsonText)
             prefsEditor.apply()
         }
 
-        fun getGenre(prefs:SharedPreferences): List<Genre>? {
+        fun getGenre(prefs:SharedPreferences): ArrayList<Genre>? {
             val gson = Gson()
             val jsonText = prefs.getString("genres", null)
             return gson.fromJson(jsonText, object : TypeToken<List<Genre>>() {}.type)
         }
 
         fun saveMovie(prefsEditor:SharedPreferences, movie: ArrayList<Movie>) {
+
+            getMovies()
             val gson = Gson()
             val jsonText = gson.toJson(movie)
             prefsEditor.edit().putString("movies", jsonText).apply()
@@ -56,14 +58,23 @@ class SharedPrefercesHelper{
         }
 
         fun saveMovie(prefs: SharedPreferences, movie:Movie) {
-            var selectedSeries = getMovies()?.toMutableList()
-            if(selectedSeries==null){
+            var offlineMovies = getMovies()?.toMutableList()
+            if(offlineMovies==null){
                 var newlist = ArrayList<Movie>()
                 newlist.add(movie)
                 saveMovie(prefs, newlist)
             }else{
-                selectedSeries?.add(movie)
-                saveMovie(prefs, selectedSeries!!)
+                var added = false
+                for(m in offlineMovies){
+                    if(m.id == movie.id){
+                        added=true
+                    }
+                }
+                if(!added){
+                    offlineMovies?.add(movie)
+                    saveMovie(prefs, offlineMovies!!)
+                }
+
             }
 
         }

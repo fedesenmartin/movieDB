@@ -14,6 +14,7 @@ class MainActivityContract {
          fun setLoaderVisiblity(visibility:Int) {}
          fun onError(s: String)
          fun navigateDetails(movie:Movie){}
+         fun navigateSearch(genreList:ArrayList<Genre>?,movie: ArrayList<Movie>?){}
          fun onSearhObtainedMovies(movies: ArrayList<Movie>){}
          fun showSearchLayout(){}
          fun shownormalLayout(){}
@@ -29,6 +30,8 @@ class MainActivityContract {
         fun searchMovie(query:String)
         fun onSearchClicked()
         fun onCancelSearchClicked()
+        fun getLocalData()
+         fun saveMovies(movie: ArrayList<Movie>)
 
 
     }

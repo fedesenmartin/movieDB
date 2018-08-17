@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">TV Show Reminder</string>
+    <string name="str_by_genre">Categories</string>
+    <string name="app_name">Movie App</string>
+
     <string name="subscribe_off">SUSCRIBIRME</string>
     <string name="subscribe_on">SUSCRIPTO</string>
     <string name="add">AGREGAR</string>
@@ -27,6 +29,7 @@
     <string name="str_popular">Popular</string>
     <string name="str_upcoming">Upcoming</string>
     <string name="str_top_rated">Top Rated</string>
+    <string name="str_view_movie">Play</string>
 
 
 </resources>

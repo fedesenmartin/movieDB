@@ -18,8 +18,10 @@ import android.widget.Toast
 import com.fedesen.prueba.App
 import com.fedesen.prueba.R
 import com.fedesen.prueba.UI.detail.DetailsActivity
+import com.fedesen.prueba.UI.searchOffline.SearchActivity
 import com.fedesen.prueba.adapter.AdapterMovie
 import com.fedesen.prueba.adapter.SearchAdapter
+import com.fedesen.prueba.model.Genre
 import com.fedesen.prueba.model.Movie
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -61,6 +63,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
         movieList.adapter = adapter
         movieList.requestFocus()
         movieList.visibility = View.VISIBLE
+        preseter.saveMovies(movie)
 
     }
 
@@ -80,7 +83,8 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
         val options = ActivityOptions.makeCustomAnimation(this,R.anim.push_left_in,
                 R.anim.push_left_out)
         val intent = Intent(this@MainActivity, DetailsActivity::class.java)
-        intent.putExtra("movie", movie)
+        intent.putExtra("movie",movie)
+
         startActivity(intent,options.toBundle())
 
 
@@ -116,14 +120,25 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
     }
 
     override fun onBackPressed() {
-
-
         if(searchLayout.visibility!=View.VISIBLE){
             super.onBackPressed()
 
         }else{
             preseter.onCancelSearchClicked()
         }
+    }
+
+
+    override fun navigateSearch(genreList: ArrayList<Genre>?, movie: ArrayList<Movie>?) {
+        super.navigateSearch(genreList, movie)
+        val options = ActivityOptions.makeCustomAnimation(this,R.anim.push_left_in,
+                R.anim.push_left_out)
+        val intent = Intent(this@MainActivity, SearchActivity::class.java)
+        var b = Bundle()
+        b.putSerializable("movie",movie)
+        b.putSerializable("genres",genreList)
+        intent.putExtras(b)
+        startActivity(intent,options.toBundle())
     }
 
     private fun initViews() {
@@ -135,6 +150,10 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
             preseter.onCancelSearchClicked()
         }
 
+        toolbar_genres_search.setOnClickListener{
+            preseter.getLocalData()
+        }
+
         searchEditText.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -142,7 +161,6 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
             override fun beforeTextChanged(s: CharSequence, start: Int,
                                            count: Int, after: Int) {
             }
-
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 if (s.length != 0) preseter.searchMovie(s.toString())
@@ -171,3 +189,4 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityViewI
     }
 
 }
+

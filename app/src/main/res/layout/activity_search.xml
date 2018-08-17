@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1b1b1b"
+
+    tools:context=".UI.searchOffline.SearchActivity">
+
+    <android.support.v7.widget.Toolbar
+
+        android:translationZ="10dp"
+        android:elevation="4dp"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/black"
+        >
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            app:ms_dropdown_max_height="250dp"
+            app:ms_text_color="@color/white"
+            app:ms_background_color="@color/black"
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:background="#1b1b1b"
+        android:visibility="gone"
+        android:id="@+id/searchListOffline"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+
+    <ProgressBar
+
+        android:id="@+id/progresBarSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"/>
+
+</RelativeLayout>

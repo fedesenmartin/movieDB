@@ -130,11 +130,14 @@
 
 
             <Button
+
+                android:text="@string/str_view_movie"
                 android:layout_marginTop="22dp"
-                android:background="@null"
+                android:background="@drawable/shape_subscribe_off"
                 android:id="@+id/suscribeButton"
                 android:layout_width="195dp"
                 android:layout_height="45dp"
+
                 android:textAllCaps="true"
                 android:textColor="@android:color/white" />
 

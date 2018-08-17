@@ -36,7 +36,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
-   //Image Request//
+    //Image Request//
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
     //RETROFIT ...  NETWORK LIBRARY
@@ -51,6 +51,9 @@ dependencies {
 
     //color librarie
     implementation 'com.android.support:palette-v7:27.1.1'
+
+    compile 'com.jaredrummler:material-spinner:1.2.5'
+
 
 
 }
