@@ -15,8 +15,8 @@ Esta capa es la encargada de proveer de informacion.Provee datos locales y datos
 ### MODEL:
 En esta capa declaro todos los objetos como tales.
 #### Clases:
-##### GenreResponse-> Funciona como un wrapper al igual que ListMoviesResponseWrapper y SearchMoviesResponseWrapper
-##### Genre y Movie -> Objectos de la aplicacion.
+###### GenreResponse-> Funciona como un wrapper al igual que ListMoviesResponseWrapper y SearchMoviesResponseWrapper
+###### Genre y Movie -> Objectos de la aplicacion.
 
 ### UI:
 #### Capa encargada de mostrar las vistas en android.Lo separe for feature ->pantalla home,detail, searchOffline.En las tres categorias se econtrara el siguiente comportamiento
