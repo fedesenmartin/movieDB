@@ -25,6 +25,9 @@ En esta capa declaro todos los objetos como tales.
 ###### FeaturePreseter->Clase que escucha hace de puente los "mensajes" de la actividad ,realiza una accion y le notifica nuevos valores a su actividad
 
 
+######  App :Esta clase se encarga de inilizalizar librerias o dependencias de la applicacion ademas de proveer un contexto .
+
+
 #### 1. En qué consiste el principio de responsabilidad única? Cuál es su propósito? 
 ##### Proveniente de la primer "s" de SOLID PRINCIPLE .Este principio nos dice que cada clase tiene que tener una sola responsabilidad y debe tener una razon para ser modificada.Su proposito es ayudar a no tener objetos y clases enormes con miles de lineas de codigo que termina siendo una clase "dios" que se encarga de muchas tares.Se vuelve poco escalable y mantenible.
 
@@ -32,7 +35,6 @@ En esta capa declaro todos los objetos como tales.
 ###### En mi opinion un buen codigo ,debe estar organizado bajo alguna arquitectura.Ya sea mvp,mvvm,flux.Tambien creo debe ser un codigo leegible (puede tambien ser comentado),modularizado.Debe tener variables con nombres representativos y seguir algun tipo de tipo de escritura.Debe poder ser testeable facilmente y para esto tomar buenas practicas como separar el framework de android (fragments,actvididade,views,layouts...)y mantenerlo dentro de su actividad o fragment y no andar modificandolos en otras clases.
 
 
-######  App :Esta clase se encarga de inilizalizar librerias o dependencias de la applicacion ademas de proveer un contexto .
 
 
 
